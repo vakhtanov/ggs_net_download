@@ -7,9 +7,9 @@ import requests
 import base64
 
 
-region_code='69'
+region_code='89'
 rayon_count=50
-filename='Tverskaya.txt'
+filename='ЯНАО.txt'
 
 link='http://pbprog.ru/webservices/oms/ajax_oms.php?type=fs&cn='+region_code+'%3A'
 #link_full='http://pbprog.ru/webservices/oms/ajax_oms.php?type=fs&cn=66%3A01' 
