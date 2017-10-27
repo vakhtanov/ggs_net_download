@@ -1,7 +1,8 @@
 ﻿"""
 comment
 """
-
+# @wahha  @HomeD
+# скрипт для скачки ГГС с сайта http://pbprog.ru, скачка по областям
 #import fetch_data
 import requests
 import base64
@@ -9,7 +10,7 @@ import base64
 
 region_code='89'
 rayon_count=50
-filename='ЯНАО.txt'
+filename='yanao.txt'
 
 link='http://pbprog.ru/webservices/oms/ajax_oms.php?type=fs&cn='+region_code+'%3A'
 #link_full='http://pbprog.ru/webservices/oms/ajax_oms.php?type=fs&cn=66%3A01' 
@@ -19,15 +20,18 @@ headers = {'X-Requested-With':'XMLHttpRequest','Cookie':'_ym_uid=150882920245648
 # i=[str(i).rjust(2,'0') for i in range(1,16)]
 
 
-i=1
+kvartal_spisok=[str(i).rjust(2,'0') for i in range(1,rayon_count+1)]
+#i=1
 # цикл по кварталам
-with open(filename, 'wb') as fd:
-	while i<=rayon_count:
-		#_______________________________
-		if i<10:
-			kvartal='0'+str(i)
-		else:
-			kvartal=str(i)
+with open(filename,'w') as fd:
+#	while i<rayon_count:
+#_______________________________
+#старый вариант добавления нуля в начало цифры
+#		if i<10:
+#			kvartal='0'+str(i)
+#		else:
+#			kvartal=str(i)
+	for kvartal in kvartal_spisok:
 		print('kvartal: '+kvartal)
 		req_link=link+kvartal
 		print('link:',req_link)
@@ -35,7 +39,7 @@ with open(filename, 'wb') as fd:
 			#req = requests.Request('GET',req_link, auth=('user', 'pass'))
 		#Запрос к сайту с пунктами
 		req=requests.get(req_link,headers=headers)
-		#Декодировка из бейза
+		#Декодировка из бейза64
 		try:
 			req_out=base64.b64decode(req.text)
 		except:
@@ -50,11 +54,4 @@ with open(filename, 'wb') as fd:
 # запись в файл
 		fd.write(req_out)
 		print('ZAPISAN')
-		i=i+1
-
-
-
-
-
-#print out_text.decode('utf-8')
-#print out_text_j.decode('utf-8')
+#		i=i+1
