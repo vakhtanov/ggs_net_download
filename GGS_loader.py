@@ -4,6 +4,7 @@ comment
 # @wahha  @HomeD
 # скрипт для скачки ГГС с сайта http://pbprog.ru, скачка по областям
 #import fetch_data
+# 123456
 import requests
 import base64
 
